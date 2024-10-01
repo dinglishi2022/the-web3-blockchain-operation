@@ -1,13 +1,21 @@
+/*
+ * @Author: dinglishi2022 dinglishi2022@gmail.com
+ * @Date: 2024-06-07 23:42:45
+ * @LastEditors: dinglishi2022 dinglishi2022@gmail.com
+ * @LastEditTime: 2024-10-01 11:25:15
+ * @FilePath: \the-web3-blockchain-operation\test\btc.test.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import {mnemonicToSeed} from "../wallet/bip/bip";
 import {createBtcAddress, importBtcAddress, signBtcTransaction, verifyBtcAddress } from "../wallet/btc";
-
+//git版本重新同步
 
 describe('btc unit test case', () => {
     test('createAddress', () => {
         const mnemonic = "lounge face pattern cinnamon shrug average spend rapid field cheese wrist weather";
         const params_1 = {
-            mnemonic: mnemonic,
-            password: ""
+            mnemonic: mnemonic, 
+            password: ""  
         }
         const seed = mnemonicToSeed(params_1)
         const account = createBtcAddress(seed.toString("hex"), "0", "0", "mainnet")
@@ -19,7 +27,7 @@ describe('btc unit test case', () => {
             privateKey: "60164bec9512d004af7f71e7ed868c8e9ac2cc6234d8b682037ec80547595f2e",
             network: "mainnet"
         }
-        const account = importBtcAddress(params)
+        const account = importBtcAddress(params);
         console.log(account)
     });
 
@@ -54,6 +62,6 @@ describe('btc unit test case', () => {
             network: "mainnet"
         }
        const ok = verifyBtcAddress(params)
-        console.log("ok=", ok)
-    });
+        console.log("ok=",  ok)
+     });
 });

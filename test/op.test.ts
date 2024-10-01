@@ -2,7 +2,7 @@
  * @Author: dinglishi2022 dinglishi2022@gmail.com
  * @Date: 2024-06-08 00:21:21
  * @LastEditors: dinglishi2022 dinglishi2022@gmail.com
- * @LastEditTime: 2024-06-08 02:19:44
+ * @LastEditTime: 2024-09-25 19:52:42
  * @FilePath: \the-web3-blockchain-operation\test\op.test.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,17 +16,18 @@ import {
     createEthAddress,
     signEthTransaction
 } from "../wallet/op/index";
-
-const bip39 = require('bip39');
-const crypto_ts = require('crypto');
+import {wordlists} from "bip39";
+import {
+    randomBytes,createHash
+} from "crypto";
 
 describe('eth unit test case', () => {
     test('generateMnemonic', async () => {
         // 1. 生成 128 位随机熵 12 15 18 21 24
-        const entropy = crypto_ts.randomBytes(24); // 128 位是 16 字节
+        const entropy = randomBytes(24); // 128 位是 16 字节
 
         // 2. 计算校验和 (SHA-256)
-        const hash = crypto_ts.createHash('sha256').update(entropy).digest();
+        const hash = createHash('sha256').update(entropy).digest();
         const checksum = hash[0] >> 6; // 取前 4 位
 
         // 3. 组合熵和校验和
@@ -44,7 +45,7 @@ describe('eth unit test case', () => {
         }
 
         // 5. 映射为助记词
-        const wordlist = bip39.wordlists.english;
+        const wordlist = wordlists.english;
         const mnemonic = indices.map(index => wordlist[index]).join(' ');
 
         console.log(mnemonic);
@@ -59,7 +60,7 @@ describe('eth unit test case', () => {
         }
         const seed = mnemonicToSeed(params_1)
         console.log(seed);
-        const account = createEthAddress(seed.toString("hex"), "0")
+        const account = createEth Address(seed.toString("hex"), "0")
         console.log(account)
     });
 
