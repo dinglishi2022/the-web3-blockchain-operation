@@ -3,7 +3,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 const ecc = require('tiny-secp256k1');
 const { BIP32Factory } = require('bip32');
 const bip32 = BIP32Factory(ecc);
-
+const bip39 = require('bip39');
 export function createAddress (params: any): any {
   const { seedHex, receiveOrChange, addressIndex, network, method } = params;
   const root = bip32.fromSeed(Buffer.from(seedHex,"hex"));
@@ -110,4 +110,7 @@ export function createSchnorrAddress (params: any): any {
     publicKey: Buffer.from(childKey.publicKey).toString('hex'),
     address
   };
+
+
+
 }

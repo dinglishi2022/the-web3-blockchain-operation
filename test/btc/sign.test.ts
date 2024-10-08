@@ -42,7 +42,7 @@ describe('btc unit test case', () => {
             address: "1H1oAqmdfTNECrrHFAJ4AhbTUyPcQjrf72",
             network: "mainnet"
         }
-       const ok = verifyBtcAddress(params)
+        const ok = verifyBtcAddress(params)
         console.log("ok=", ok)
     });
 
